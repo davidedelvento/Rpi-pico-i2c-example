@@ -48,10 +48,10 @@ Worker about to send data
 Worker sent data
 ```
 
-As it is obvious, `i2c_write_raw_blocking` it is not blocking and the data is sent before the controller is ready to receive, which causes the bus to stall.
+As it is obvious, `i2c_write_raw_blocking` is not blocking, which might be ok if the data fits the FIFO. However the data appears to go into a black hole and never reach the controller, even leaving the code run for many more iterations than shown here. I speculate that the data is sent before the controller is ready to receive it, which causes the bus (and hence the controller) to stall. Something is broken on the worker side, because otherwise it should (eventually) hang too, and instead it doesn't.
 Looking at the source code of the `i2c_write_raw_blocking` function, it seems correct to me, so I speculate this is a hardware issue.
 
 ## Possible workaround
-Obviously in most cases one could not or would not want to add just waits in the worker code, so using interrupts is the obvious solution. I put some stud example of that approach commented out in the code. As is it's not working and my time to work on this issue today is over.
+Obviously in most cases one could not or would not want to add carefully crafted and prone-to-break waits in the worker code, so using interrupts is the obvious solution. I put some stud example of that approach commented out in the code. As is it's not working and my time to work on this issue today is over.
 
 Credits: https://github.com/vmilea/pico_i2c_slave/
