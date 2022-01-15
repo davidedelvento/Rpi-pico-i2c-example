@@ -11,7 +11,7 @@ To demonstrate this behavior this code is using a single pico taking both roles 
 
 
 
-If [line 37](https://github.com/davidedelvento/Rpi-pico-i2c-example/blob/cf7505e05e7d4061ffb33ae7362bd04a9c569c5b/i2c_example/example.c#L37) is commented and [line 41](https://github.com/davidedelvento/Rpi-pico-i2c-example/blob/cf7505e05e7d4061ffb33ae7362bd04a9c569c5b/i2c_example/example.c#L41) is uncommented, this is the output of the program.
+If [line 37](https://github.com/davidedelvento/Rpi-pico-i2c-example/blob/cf7505e05e7d4061ffb33ae7362bd04a9c569c5b/i2c_example/example.c#L37) is uncommented and [line 41](https://github.com/davidedelvento/Rpi-pico-i2c-example/blob/cf7505e05e7d4061ffb33ae7362bd04a9c569c5b/i2c_example/example.c#L41) is commented, this is the output of the program.
 
 ```
 pico I2C controller/worker example
