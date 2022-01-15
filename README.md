@@ -54,4 +54,7 @@ Looking at the source code of the `i2c_write_raw_blocking` function, it seems co
 ## Possible workaround
 Obviously in most cases one could not or would not want to add carefully crafted and prone-to-break waits in the worker code, so using interrupts is the obvious solution. I put some stud example of that approach commented out in the code. As is it's not working and my time to work on this issue today is over.
 
+## Further observation
+If one swaps the `read` and `write` (i.e. the controller writes and the worker reads) everything works as expected. In fact the corresponding `i2c_read_raw_blocking` does block and no timing issues arises.
+
 Credits: https://github.com/vmilea/pico_i2c_slave/
