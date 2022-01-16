@@ -52,7 +52,7 @@ As it is obvious, `i2c_write_raw_blocking` is not blocking, which might be ok if
 Looking at the source code of the `i2c_write_raw_blocking` function, it seems correct to me, so I speculate this is a hardware issue.
 
 ## Possible workaround
-Obviously in most cases one could not or would not want to add carefully crafted and prone-to-break waits in the worker code, so using interrupts is the obvious solution. Unfortunately, that does not work either. I put some stud example of that approach commented out in the code, which you can try to uncomment and see it hanging in the controller/receiver side too. The sender/work continues running with no problem, as one can see e.g. by putting a blinking LED or a `printf` in the interrupt call (never do that in production, but for a test is ok)
+Obviously in most cases one could not or would not want to add carefully crafted and prone-to-break waits in the worker code, so using interrupts is the obvious solution. Very unfortunately, that does not work either. I put a stud example of such an approach commented out in the code, which you can try to uncomment and see the code hanging. Like the non-interrupt based approach, it's hanging in the controller/receiver side. The sender/worker continues happily to run, as one can see e.g. by putting a blinking LED or a printf in the interrupt call (never do that in production, but for a test should be ok)
 
 The only feasible approach is to go really low level, as demonstrated [here](https://github.com/vmilea/pico_i2c_slave/blob/a25d1040950cdb4d37b50e05886c6195307f245c/i2c_slave/i2c_slave.c#L26-L55)
 
